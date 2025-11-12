@@ -1,0 +1,12 @@
+id,data,descricao,valor,categoria_id,anotacao
+1,2025-11-12,linha de pedreiro,7.00,2,
+2,2025-11-12,geraldo,25.00,5,
+3,2025-11-12,carregamento piso,100.00,4,
+4,2025-11-12,pó,20.00,3,
+5,2025-11-01,parcela 1 - azulejo da loja,700.00,3,"primeiro pagamento do piso na laje
+foi acordado 1900"
+6,2025-11-01,adiantamento,100.00,3,ele pediu declarando ser uma apresentacao da filha.
+7,2025-11-07,pagamento quartinho azulejo,200.00,3,
+8,2025-11-07,adiantamento elétrica,200.00,3,
+9,2025-11-07,azulejo banheiro + parte da eletrica,500.00,3,
+10,2025-11-11,adiantamento,50.00,3,ele alegou dizendo ser pagamento do gas + passagem pra vir

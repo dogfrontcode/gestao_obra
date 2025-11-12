@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="space-y-8">
+  <header class="grid gap-4 md:grid-cols-3">
+    <div class="rounded-2xl border border-slate-800 bg-surface/70 p-6">
+      <p class="text-xs uppercase tracking-wide text-slate-500">Total gasto</p>
+      <p class="mt-2 text-2xl font-semibold text-slate-100">R$ {{ '%.2f'|format(total_geral) }}</p>
+    </div>
+    <div class="rounded-2xl border border-slate-800 bg-surface/70 p-6 md:col-span-2">
+      <p class="text-xs uppercase tracking-wide text-slate-500">Top categorias</p>
+      {% if por_categoria %}
+        <ul class="mt-3 grid gap-3 md:grid-cols-2">
+          {% for nome, valor in por_categoria.items() %}
+            <li class="rounded-xl border border-slate-800 bg-surface px-4 py-3 text-sm text-slate-300">
+              <div class="flex justify-between">
+                <span class="font-medium text-slate-100">{{ nome }}</span>
+                <span class="text-emerald-300">R$ {{ '%.2f'|format(valor) }}</span>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="mt-3 text-sm text-slate-500">Sem dados ainda.</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="rounded-2xl border border-slate-800 bg-surface/70 p-6">
+    <div class="flex items-center justify-between">
+      <h2 class="text-lg font-semibold text-slate-100">Distribuição por categoria</h2>
+      <span class="text-xs text-slate-500">Atualizado automaticamente</span>
+    </div>
+    <div class="mt-6">
+      <canvas id="expensesChart" class="h-64"></canvas>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById("expensesChart");
+  const labels = {{ chart_labels|safe }};
+  const values = {{ chart_values|safe }};
+
+  new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels,
+      datasets: [
+        {
+          data: values,
+          backgroundColor: [
+            "#22d3ee",
+            "#38bdf8",
+            "#818cf8",
+            "#f472b6",
+            "#fb7185",
+            "#facc15",
+            "#34d399"
+          ],
+          borderWidth: 0
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: "#cbd5f5",
+            font: { family: "Inter" }
+          }
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}
+
